@@ -1,6 +1,7 @@
 package com.algaworks.cursojsfeprimefacesessencial.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -23,12 +24,13 @@ public class RamoAtividades implements Serializable {
         CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
 
         CriteriaQuery<RamoAtividades> criteriaQuery = criteriaBuilder.createQuery(RamoAtividades.class);
-
         Root<RamoAtividades> root = criteriaQuery.from(RamoAtividades.class);
+        criteriaQuery.select(root);
+        criteriaQuery.where(criteriaBuilder.like(root.get("descricao"), descricao + "%"));
 
+        TypedQuery<RamoAtividades> query = manager.createQuery(criteriaQuery);
 
-
-        return null;
+        return query.getResultList();
     }
 
 }

@@ -1,6 +1,8 @@
 package com.algaworks.cursojsfeprimefacesessencial.Model;
 
 
+import com.algaworks.cursojsfeprimefacesessencial.Repository.RamoAtividades;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -31,7 +33,7 @@ public class Empresa implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "ramo_atividade_id", nullable = false)
-    private RamoAtividade ramoAtividade;
+    private RamoAtividades ramoAtividade;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
@@ -77,15 +79,21 @@ public class Empresa implements Serializable {
         this.dataFundacao = dataFundacao;
     }
 
-    public RamoAtividade getRamoAtividade() {
+    public RamoAtividades getRamoAtividade() {
         return ramoAtividade;
     }
 
-    public void setRamoAtividade(RamoAtividade ramoAtividade) {
+    public void setRamoAtividade(RamoAtividades ramoAtividade) {
         this.ramoAtividade = ramoAtividade;
     }
 
+    public TipoEmpresa getTipo() {
+        return tipo;
+    }
 
+    public void setTipo(TipoEmpresa tipo) {
+        this.tipo = tipo;
+    }
 
     @Override
     public boolean equals(Object o) {
